@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Name - Resume</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 20px;
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        animation: slideUp 0.8s ease-out;
+      }
+
+      @keyframes slideUp {
+        from {
+          transform: translateY(50px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      .header {
+        background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+        color: white;
+        padding: 40px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .header::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.1) 0%,
+          transparent 70%
+        );
+        animation: pulse 4s ease-in-out infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+      }
+
+      .header h1 {
+        font-size: 3rem;
+        margin-bottom: 10px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .header .title {
+        font-size: 1.3rem;
+        opacity: 0.9;
+        margin-bottom: 20px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .contact-info {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+        position: relative;
+        z-index: 1;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: transform 0.3s ease;
+      }
+
+      .contact-item:hover {
+        transform: translateY(-2px);
+      }
+
+      .main-content {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 0;
+      }
+
+      .sidebar {
+        background: #f8f9fa;
+        padding: 40px 30px;
+        border-right: 1px solid #e9ecef;
+      }
+
+      .content {
+        padding: 40px;
+      }
+
+      .section {
+        margin-bottom: 40px;
+      }
+
+      .section h2 {
+        color: #2c3e50;
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 10px;
+      }
+
+      .section h2::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background: linear-gradient(135deg, #3498db, #2c3e50);
+        border-radius: 2px;
+      }
+
+      .skill-item {
+        margin-bottom: 15px;
+      }
+
+      .skill-name {
+        font-weight: 600;
+        margin-bottom: 5px;
+        color: #2c3e50;
+      }
+
+      .skill-bar {
+        height: 8px;
+        background: #e9ecef;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+
+      .skill-progress {
+        height: 100%;
+        background: linear-gradient(135deg, #3498db, #2c3e50);
+        border-radius: 4px;
+        transition: width 2s ease-in-out;
+        animation: fillBar 2s ease-in-out;
+      }
+
+      @keyframes fillBar {
+        from {
+          width: 0;
+        }
+      }
+
+      .experience-item,
+      .education-item {
+        margin-bottom: 30px;
+        padding: 25px;
+        background: #f8f9fa;
+        border-radius: 10px;
+        border-left: 4px solid #3498db;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .experience-item:hover,
+      .education-item:hover {
+        transform: translateX(5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .job-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #2c3e50;
+        margin-bottom: 5px;
+      }
+
+      .company {
+        font-weight: 600;
+        color: #3498db;
+        margin-bottom: 5px;
+      }
+
+      .date {
+        color: #7f8c8d;
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+      }
+
+      .description {
+        color: #555;
+        line-height: 1.6;
+      }
+
+      .achievements {
+        list-style: none;
+        margin-top: 10px;
+      }
+
+      .achievements li {
+        padding: 5px 0;
+        position: relative;
+        padding-left: 20px;
+      }
+
+      .achievements li::before {
+        content: "▸";
+        position: absolute;
+        left: 0;
+        color: #3498db;
+        font-weight: bold;
+      }
+
+      .languages {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .language-tag {
+        background: linear-gradient(135deg, #3498db, #2c3e50);
+        color: white;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+
+      .interests {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .interest-tag {
+        background: #e9ecef;
+        color: #2c3e50;
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        transition: background 0.3s ease;
+      }
+
+      .interest-tag:hover {
+        background: #3498db;
+        color: white;
+      }
+
+      @media (max-width: 768px) {
+        .main-content {
+          grid-template-columns: 1fr;
+        }
+
+        .header h1 {
+          font-size: 2rem;
+        }
+
+        .contact-info {
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        .container {
+          margin: 10px;
+          border-radius: 15px;
+        }
+      }
+
+      .download-btn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: linear-gradient(135deg, #3498db, #2c3e50);
+        color: white;
+        border: none;
+        padding: 15px 20px;
+        border-radius: 50px;
+        cursor: pointer;
+        font-size: 1rem;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease;
+      }
+
+      .download-btn:hover {
+        transform: translateY(-2px);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <h1>Rasoul Kordestani</h1>
+        <div class="title">Electrical (Telecomunication) Engineer</div>
+        <div class="contact-info">
+          <div class="contact-item">
+            <span>📧</span>
+            <span>Rasoulkordestani12@gmail.com</span>
+          </div>
+          <div class="contact-item">
+            <span>📱</span>
+            <span>+98 938 258 2038</span>
+          </div>
+          <div class="contact-item">
+            <span>🌐</span>
+            <span
+              >https://www.linkedin.com/in/rasoul-kordestani-1791bb15a/</span
+            >
+          </div>
+          <div class="contact-item">
+            <span>📍</span>
+            <span>Tehran , Shahre-Qods</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="main-content">
+        <aside class="sidebar">
+          <section class="section">
+            <h2>Skills</h2>
+            <div class="skill-item">
+              <div class="skill-name">C++</div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 50%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">Industrial electronics</div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 50%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">PLC</div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 40%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">Node.js</div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 85%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">JavaScript</div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 70%"></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <h2>Languages</h2>
+            <div class="languages">
+              <div class="language-tag">Persian (Native)</div>
+              <div class="language-tag">English (Middle)</div>
+            </div>
+          </section>
+
+          <section class="section">
+            <h2>Interests</h2>
+            <div class="interests">
+              <div class="interest-tag">Coding</div>
+              <div class="interest-tag">Design & Troubleshoot Circuits</div>
+              <div class="interest-tag">Open Source</div>
+              <div class="interest-tag">Chess</div>
+            </div>
+          </section>
+        </aside>
+
+        <main class="content">
+          <section class="section">
+            <h2>Professional Summary</h2>
+            <p>
+              Motivated Electrical (Telecommunication) Engineer with an academic
+              background and hands-on experience in electronics and industrial
+              automation. Transitioned into software engineering, leveraging
+              strong analytical and problem-solving skills to build robust web
+              and mobile applications. Experienced in both frontend and backend
+              development, including React, Node.js, and React Native for
+              cross-platform mobile apps. Passionate about continuous learning,
+              open source, and delivering high-quality solutions that bridge
+              hardware and software.
+            </p>
+          </section>
+
+          <section class="section">
+            <h2>Experience</h2>
+            <div class="experience-item">
+              <div class="job-title">Jonior Frontend Developer</div>
+              <div class="company">Produpt Studio</div>
+              <div class="date">2021 - 2022</div>
+              <div class="description">
+                Collaborated closely with the Produpt Studio team to develop and
+                maintain frontend features using modern JavaScript frameworks.
+                Assisted in troubleshooting UI issues, implementing responsive
+                designs, and ensuring cross-browser compatibility. Contributed
+                to code reviews and participated in daily stand-ups to align
+                with agile development practices.
+              </div>
+              <ul class="achievements">
+                <li>
+                  Learning and applying pwa (Progressive Web Apps) concepts
+                </li>
+                <li>Co-Working with cross-functional teams</li>
+                <li>
+                  Developed and maintained web applications using React and
+                  Node.js
+                </li>
+              </ul>
+            </div>
+
+            <div class="experience-item">
+              <div class="job-title">Frontend Developer</div>
+              <div class="company">Kamva</div>
+              <div class="date">2022 - 2023</div>
+              <div class="description">
+                Expand and Develop the Kamva platform, focusing on enhancing
+                user experience and performance. Implemented new features and
+                optimized existing code for better maintainability and speed.
+                Collaborated with designers to create intuitive interfaces and
+                ensure a seamless user journey.
+              </div>
+              <ul class="achievements">
+                <li>Built responsive web applications from scratch</li>
+                <li>Mentored junior developers and conducted code reviews</li>
+              </ul>
+            </div>
+
+            <div class="experience-item">
+              <div class="job-title">Software Developer</div>
+              <div class="company">Tarabar-Plus</div>
+              <div class="date">2024 - 2025</div>
+              <div class="description">
+                Create Platform of connecting truck drivers to cargo-owners and
+                related companies .
+              </div>
+              <ul class="achievements">
+                <li>
+                  Solving logistics challenges through innovative software
+                  solutions
+                </li>
+                <li>Find cargos simply for truck drivers</li>
+                <li>
+                  Handle performance of the platform to ensure reliability and
+                  speed
+                </li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="section">
+            <h2>Education</h2>
+            <div class="education-item">
+              <div class="job-title">
+                Bachelor of Electrical (Telecommunication) Engineer
+              </div>
+              <div class="company">University of Isfahan</div>
+              <div class="date">2017 - 2022</div>
+              <div class="description">
+                Graduated Basic of Electrical engineering with focus on
+                Telecommunication engineering.
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
